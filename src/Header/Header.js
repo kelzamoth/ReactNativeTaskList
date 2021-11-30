@@ -1,40 +1,57 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
 import AddButton from "./AddButton/AddButton";
-import { Col, Row, Grid } from "react-native-easy-grid";
+import { Col, Grid } from "react-native-easy-grid";
+import { useFonts, Inter_800ExtraBold } from "@expo-google-fonts/inter";
 
 function Header({ changeInputCond, themeMode }) {
-  return (
-    <Grid style={styles.main}>
-      <Col size={3} style={styles.col}>
-        <Text numberOfLines={1} style={[styles.text, theme[themeMode].text]}>
-          Tasks
-        </Text>
-      </Col>
-      <Col size={1}>
-        <AddButton
-          button={[styles.button, theme[themeMode].button]}
-          image={styles.image}
-          onPressFunc={changeInputCond}
-          themeMode={themeMode}
-        />
-      </Col>
-    </Grid>
-  );
+  let [fontsLoaded] = useFonts({
+    Inter_800ExtraBold,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  } else {
+    return (
+      <Grid style={styles.main}>
+        <Col size={3}>
+          <Text
+            numberOfLines={1}
+            style={[
+              styles.textTask,
+              theme[themeMode].text,
+              { fontFamily: "Inter_800ExtraBold" },
+            ]}
+          >
+            Tasks
+          </Text>
+        </Col>
+        <Col
+          size={1}
+          style={{
+            paddingTop: 6,
+          }}
+        >
+          <AddButton
+            button={[styles.button, theme[themeMode].button]}
+            image={styles.image}
+            onPressFunc={changeInputCond}
+            themeMode={themeMode}
+          />
+        </Col>
+      </Grid>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   main: {
-    maxHeight: 68,
     minHeight: 68,
+    width: "100%",
   },
-  col: {
-    justifyContent: "center",
-  },
-  text: {
-    lineHeight: 56,
+  textTask: {
+    minHeight: 56,
     fontSize: 56,
-    fontWeight: "bold",
     color: "black",
   },
   button: {
@@ -44,7 +61,6 @@ const styles = StyleSheet.create({
     height: 56,
     borderRadius: 6,
     borderWidth: 1,
-    elevation: 3,
     marginLeft: "auto",
   },
   image: {
@@ -65,11 +81,11 @@ const theme = {
   }),
   dark: StyleSheet.create({
     text: {
-      color: "#FFFFFF",
+      color: "#DADADA",
     },
     button: {
-      backgroundColor: "#3C3C4B",
-      borderColor: "#46464B",
+      backgroundColor: "#24242D",
+      borderColor: "#29292F",
     },
   }),
 };

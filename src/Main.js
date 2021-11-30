@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, FlatList, Switch, SafeAreaView } from "react-native";
+import { View, StyleSheet, FlatList, Switch } from "react-native";
 import Form from "./Form/Form";
 import Header from "./Header/Header";
 import ListItem from "./List/ListItem";
@@ -19,7 +19,7 @@ function Main(props) {
       : props.changeTheme("light");
 
   return (
-    <SafeAreaView style={styles.main}>
+    <View style={styles.main}>
       <View style={[styles.container, theme[props.theme].container]}>
         <Switch
           trackColor={{ false: "#767577", true: "#BE1D1D" }}
@@ -35,20 +35,18 @@ function Main(props) {
         {inputCondition && (
           <Form createNewTask={createNewTask} themeMode={props.theme} />
         )}
-        <View>
-          <FlatList
-            data={props.tasks}
-            renderItem={({ item }) => (
-              <ListItem
-                el={item}
-                isTaskChecked={props.isTaskChecked}
-                themeMode={props.theme}
-              />
-            )}
-          />
-        </View>
+        <FlatList
+          data={props.tasks}
+          renderItem={({ item }) => (
+            <ListItem
+              el={item}
+              isTaskChecked={props.isTaskChecked}
+              themeMode={props.theme}
+            />
+          )}
+        />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -58,12 +56,13 @@ const styles = StyleSheet.create({
     paddingTop: 64,
     width: "100%",
     height: "100%",
+    fontFamily: "Inter",
   },
   main: {
     margin: 0,
     padding: 0,
     width: "100%",
-    height: "100%",
+    height: "auto",
   },
   switch: {
     marginLeft: "auto",

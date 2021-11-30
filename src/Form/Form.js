@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { TextInput, StyleSheet, View } from "react-native";
+import { useFonts, Inter_500Medium } from "@expo-google-fonts/inter";
 
 function Form({ createNewTask, themeMode }) {
   const [text, setValue] = useState("");
@@ -13,43 +14,52 @@ function Form({ createNewTask, themeMode }) {
       setValue("");
     }
   };
+  let [fontsLoaded] = useFonts({
+    Inter_500Medium,
+  });
 
-  return (
-    <View style={styles.main}>
-      <TextInput
-        maxLength={35}
-        style={[styles.input, theme[themeMode].input]}
-        value={text}
-        onChangeText={onChange}
-        onBlur={saveText}
-        onEndEditing={saveText}
-        placeholder={"Input text..."}
-      ></TextInput>
-    </View>
-  );
+  if (!fontsLoaded) {
+    return null;
+  } else {
+    return (
+      <View style={styles.main}>
+        <TextInput
+          maxLength={35}
+          style={[styles.input, theme[themeMode].input]}
+          value={text}
+          onChangeText={onChange}
+          onBlur={saveText}
+          onEndEditing={saveText}
+        ></TextInput>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   main: {
     maxWidth: 377,
+    marginBottom: 16,
+    marginTop: 3,
   },
   input: {
     borderBottomWidth: 1,
-    padding: 10,
+    padding: 5,
     fontSize: 18,
+    fontFamily: "Inter_500Medium",
   },
 });
 
 const theme = {
   light: StyleSheet.create({
     input: {
-      borderColor: "#000",
-      color: "#000",
+      borderColor: "#EBEBEB",
+      color: "#575767",
     },
   }),
   dark: StyleSheet.create({
     input: {
-      borderColor: "#DADADA",
+      borderColor: "#29292F",
       color: "#DADADA",
     },
   }),

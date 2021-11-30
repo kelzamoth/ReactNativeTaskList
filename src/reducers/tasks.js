@@ -1,9 +1,4 @@
-const initialState = [
-  { text: "Buy milk", key: "1", isDone: true },
-  { text: "Buy milk", key: "2", isDone: true },
-  { text: "Buy milk", key: "3", isDone: true },
-  { text: "Buy milk", key: "4", isDone: true },
-];
+const initialState = [];
 
 const tasks = (state = initialState, action) => {
   switch (action.type) {

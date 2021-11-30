@@ -1,41 +1,55 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
-import CheckBox from "expo-checkbox";
+import { CheckBox } from "react-native-elements";
 import { Col, Grid } from "react-native-easy-grid";
+import { useFonts, Inter_500Medium } from "@expo-google-fonts/inter";
 
 function ListItem({ el, isTaskChecked, themeMode }) {
-  return (
-    <Grid>
-      <Col size={1} style={styles.col}>
-        <CheckBox
-          style={styles.checkBox}
-          value={el.isDone}
-          onValueChange={() => isTaskChecked(el.key, !el.isDone)}
-        />
-      </Col>
-      <Col size={5} style={styles.col}>
-        <Text style={[styles.text, theme[themeMode].text]} numberOfLines={1}>
-          {el.text}
-        </Text>
-      </Col>
-    </Grid>
-  );
+  let [fontsLoaded] = useFonts({
+    Inter_500Medium,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  } else {
+    return (
+      <Grid>
+        <Col style={styles.col} size={6}>
+          <CheckBox
+            containerStyle={styles.checkBox}
+            checked={el.isDone}
+            size={24}
+            onPress={() => isTaskChecked(el.key, !el.isDone)}
+          />
+        </Col>
+        <Col style={styles.col} size={94}>
+          <Text style={[styles.text, theme[themeMode].text]} numberOfLines={1}>
+            {el.text}
+          </Text>
+        </Col>
+      </Grid>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   col: {
-    paddingVertical: 16,
-    lineHeight: 24,
-    justifyContent: "center",
+    marginVertical: 16,
+    height: 26,
   },
   checkBox: {
-    width: 24,
-    height: 24,
+    marginLeft: 0,
+    marginRight: 0,
+    marginTop: 2,
+    marginBottom: 0,
+    padding: 0,
+    alignItems: "flex-start",
   },
   text: {
-    alignItems: "flex-start",
-    justifyContent: "center",
+    textAlign: "left",
+    marginLeft: 15,
     fontSize: 18,
+    fontFamily: "Inter_500Medium",
   },
 });
 const theme = {
