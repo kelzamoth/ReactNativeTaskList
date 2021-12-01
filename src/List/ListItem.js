@@ -18,6 +18,8 @@ function ListItem({ el, isTaskChecked, themeMode }) {
           <CheckBox
             containerStyle={styles.checkBox}
             checked={el.isDone}
+            checkedColor={themeMode == "light" ? "red" : "#DADADA"}
+            uncheckedColor={themeMode == "light" ? "#DADADA" : "#000"}
             size={24}
             onPress={() => isTaskChecked(el.key, !el.isDone)}
           />

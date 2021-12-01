@@ -5,7 +5,7 @@ import rootReducer from "../src/reducers/index";
 import { createLogger } from "redux-logger";
 
 const persistConfig = {
-  key: "redux-tastskgар",
+  key: "redux-taskkk",
   storage: AsyncStorage,
   blacklist: [],
 };

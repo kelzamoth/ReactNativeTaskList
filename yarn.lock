@@ -5440,19 +5440,6 @@
     "to-camel-case" "^1.0.0"
     "xcode" "^0.8.8"
 
-"rnpm@^1.9.0":
-  "integrity" "sha1-CmZw+z+sws3bffOKB+W0leQj55w="
-  "resolved" "https://registry.npmjs.org/rnpm/-/rnpm-1.9.0.tgz"
-  "version" "1.9.0"
-  dependencies:
-    "commander" "^2.9.0"
-    "glob" "^7.0.1"
-    "lodash" "^3.10.1"
-    "rnpm-plugin-install" "^1.1.0"
-    "rnpm-plugin-link" "^1.8.0"
-    "update-notifier" "^0.6.0"
-    "xmldoc" "^0.4.0"
-
 "rsvp@^4.8.4":
   "integrity" "sha512-nfMOlASu9OnRJo1mbEk2cz0D56a1MBNrJ7orjRZQG10XDyuvwksKbuXNp6qa+kbn839HwjwhBzhFmdsaEAfauA=="
   "resolved" "https://registry.npmjs.org/rsvp/-/rsvp-4.8.5.tgz"

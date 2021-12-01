@@ -24,7 +24,7 @@ function Form({ createNewTask, themeMode }) {
     return (
       <View style={styles.main}>
         <TextInput
-          maxLength={35}
+          maxLength={30}
           style={[styles.input, theme[themeMode].input]}
           value={text}
           onChangeText={onChange}
