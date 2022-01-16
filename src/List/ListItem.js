@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
   },
   delButton: {
     marginRight: 15,
+    marginTop: 20,
   },
 });
 const theme = {
