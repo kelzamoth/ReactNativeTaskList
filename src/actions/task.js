@@ -10,3 +10,8 @@ export const isTaskChecked = (key, isDone) => ({
   key: key,
   isDone: isDone,
 });
+
+export const deleteTaskAction = (key) => ({
+  type: "DELETE_TASK",
+  key: key,
+});

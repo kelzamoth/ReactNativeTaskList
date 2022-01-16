@@ -3,8 +3,9 @@ import { StyleSheet, Text } from "react-native";
 import { CheckBox } from "react-native-elements";
 import { Col, Grid } from "react-native-easy-grid";
 import { useFonts, Inter_500Medium } from "@expo-google-fonts/inter";
+import DeleteButton from "./DeleteButton";
 
-function ListItem({ el, isTaskChecked, themeMode }) {
+function ListItem({ el, isTaskChecked, themeMode, deleteTask }) {
   let [fontsLoaded] = useFonts({
     Inter_500Medium,
   });
@@ -18,16 +19,19 @@ function ListItem({ el, isTaskChecked, themeMode }) {
           <CheckBox
             containerStyle={styles.checkBox}
             checked={el.isDone}
-            checkedColor={themeMode == "light" ? "red" : "#DADADA"}
-            uncheckedColor={themeMode == "light" ? "#DADADA" : "#000"}
+            checkedColor={themeMode === "light" ? "red" : "#DADADA"}
+            uncheckedColor={themeMode === "light" ? "#DADADA" : "#000"}
             size={24}
             onPress={() => isTaskChecked(el.key, !el.isDone)}
           />
         </Col>
-        <Col style={styles.col} size={94}>
+        <Col style={styles.col} size={80}>
           <Text style={[styles.text, theme[themeMode].text]} numberOfLines={1}>
             {el.text}
           </Text>
+        </Col>
+        <Col style={styles.delButton} size={14}>
+          <DeleteButton onPressFunc={deleteTask} keyItem={el.key} />
         </Col>
       </Grid>
     );
@@ -52,6 +56,9 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     fontSize: 18,
     fontFamily: "Inter_500Medium",
+  },
+  delButton: {
+    marginRight: 15,
   },
 });
 const theme = {

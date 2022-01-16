@@ -1,4 +1,4 @@
-import { addTaskAction, isTaskChecked } from "./task";
+import { addTaskAction, isTaskChecked, deleteTaskAction } from "./task";
 import { changeTheme } from "./theme";
 
-export { addTaskAction, isTaskChecked, changeTheme };
+export { addTaskAction, isTaskChecked, changeTheme, deleteTaskAction };

@@ -1,5 +1,10 @@
 import { connect } from "react-redux";
-import { addTaskAction, isTaskChecked, changeTheme } from "../actions";
+import {
+  addTaskAction,
+  isTaskChecked,
+  changeTheme,
+  deleteTaskAction,
+} from "../actions";
 import Main from "../Main";
 
 const mapStateToProps = (state) => {
@@ -13,6 +18,7 @@ const mapDispatchToProps = (dispatch) => {
     addTask: (text, key, isDone) => dispatch(addTaskAction(text, key, isDone)),
     isTaskChecked: (key, isDone) => dispatch(isTaskChecked(key, isDone)),
     changeTheme: (theme) => dispatch(changeTheme(theme)),
+    deleteTask: (key) => dispatch(deleteTaskAction(key)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

@@ -14,11 +14,14 @@ const tasks = (state = initialState, action) => {
     }
     case "IS_TASK_CHECKED": {
       return state.map((item) => {
-        if (item.key == action.key) {
+        if (item.key === action.key) {
           return { ...item, isDone: action.isDone };
         }
         return item;
       });
+    }
+    case "DELETE_TASK": {
+      return state.filter( item => item.key !== action.key);
     }
     default: {
       return state;

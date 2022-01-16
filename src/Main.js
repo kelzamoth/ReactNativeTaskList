@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { View, StyleSheet, FlatList, Switch } from "react-native";
+import { View, StyleSheet, FlatList, Switch, Text } from "react-native";
 import Form from "./Form/Form";
 import Header from "./Header/Header";
 import ListItem from "./List/ListItem";
+import ModalDropdown from "react-native-modal-dropdown";
 
 function Main(props) {
   const createNewTask = (text) => {
     let key = Math.random().toString(36).substring(7);
-    let isDone = true;
+    let isDone = false;
     props.addTask(text, key, isDone);
   };
 
@@ -17,6 +18,9 @@ function Main(props) {
     props.theme == "light"
       ? props.changeTheme("dark")
       : props.changeTheme("light");
+
+  let taskCount = props.tasks.length;
+  let checkedTask = props.tasks.filter((item) => item.isDone === true).length;
 
   return (
     <View style={styles.main}>
@@ -31,7 +35,8 @@ function Main(props) {
         />
 
         <Header changeInputCond={changeInputCond} themeMode={props.theme} />
-
+        <Text>Общее количество задач: {taskCount}</Text>
+        <Text>Количество выполенных задач: {checkedTask}</Text>
         {inputCondition && (
           <Form createNewTask={createNewTask} themeMode={props.theme} />
         )}
@@ -42,6 +47,7 @@ function Main(props) {
               el={item}
               isTaskChecked={props.isTaskChecked}
               themeMode={props.theme}
+              deleteTask={props.deleteTask}
             />
           )}
         />
